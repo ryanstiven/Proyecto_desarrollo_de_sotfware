@@ -1,0 +1,179 @@
+CREATE DATABASE compraventa_motos;
+USE compraventa_motos;
+
+CREATE TABLE Proveedor (
+    id_proveedor INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    contacto VARCHAR(100)
+);
+
+CREATE TABLE Cliente (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    documento VARCHAR(50),
+    telefono VARCHAR(20)
+);
+
+CREATE TABLE Moto (
+    id_moto INT AUTO_INCREMENT PRIMARY KEY,
+    marca VARCHAR(50),
+    modelo VARCHAR(50),
+    cilindraje INT,
+    anio INT,
+    precio DECIMAL(10,2),
+    id_proveedor INT,
+    FOREIGN KEY (id_proveedor) REFERENCES Proveedor(id_proveedor)
+);
+
+CREATE TABLE Pedido (
+    id_pedido INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_pedido DATE,
+    estado VARCHAR(50),
+    id_proveedor INT,
+    FOREIGN KEY (id_proveedor) REFERENCES Proveedor(id_proveedor)
+);
+
+CREATE TABLE Venta (
+    id_venta INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE,
+    precio_venta DECIMAL(10,2),
+    id_cliente INT,
+    id_moto INT,
+    FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente),
+    FOREIGN KEY (id_moto) REFERENCES Moto(id_moto)
+);
+
+INSERT INTO Proveedor (nombre, contacto) VALUES
+('Yamaha Colombia','yamaha@email.com'),
+('Honda Colombia','honda@email.com'),
+('Suzuki Colombia','suzuki@email.com'),
+('AKT Motos','akt@email.com'),
+('Bajaj Colombia','bajaj@email.com'),
+('KTM Colombia','ktm@email.com'),
+('BMW Motorrad','bmw@email.com'),
+('Ducati Colombia','ducati@email.com'),
+('TVS Motor','tvs@email.com'),
+('Hero Motos','hero@email.com'),
+('Royal Enfield','royal@email.com'),
+('Kawasaki Colombia','kawa@email.com'),
+('Benelli','benelli@email.com'),
+('UM Motos','um@email.com'),
+('Victory','victory@email.com'),
+('Aprilia','aprilia@email.com'),
+('Harley Davidson','harley@email.com'),
+('Vespa','vespa@email.com'),
+('CFMoto','cfmoto@email.com'),
+('Zontes','zontes@email.com'),
+('Lifan','lifan@email.com'),
+('Keeway','keeway@email.com'),
+('Sym','sym@email.com'),
+('Daelim','daelim@email.com'),
+('GasGas','gasgas@email.com');
+
+INSERT INTO Cliente (nombre, documento, telefono) VALUES
+('Juan Perez','1001','3001111111'),
+('Maria Gomez','1002','3002222222'),
+('Carlos Lopez','1003','3003333333'),
+('Ana Torres','1004','3004444444'),
+('Luis Ramirez','1005','3005555555'),
+('Sofia Martinez','1006','3006666666'),
+('David Castro','1007','3007777777'),
+('Laura Rojas','1008','3008888888'),
+('Andres Diaz','1009','3009999999'),
+('Paula Herrera','1010','3011111111'),
+('Miguel Silva','1011','3012222222'),
+('Daniela Cruz','1012','3013333333'),
+('Felipe Vargas','1013','3014444444'),
+('Valentina Ruiz','1014','3015555555'),
+('Jorge Mendoza','1015','3016666666'),
+('Camila Ortiz','1016','3017777777'),
+('Sebastian Moreno','1017','3018888888'),
+('Natalia Vega','1018','3019999999'),
+('Ricardo Pardo','1019','3021111111'),
+('Angela Reyes','1020','3022222222'),
+('Oscar Jimenez','1021','3023333333'),
+('Diana Peña','1022','3024444444'),
+('Kevin Arias','1023','3025555555'),
+('Juliana Salazar','1024','3026666666'),
+('Cristian Soto','1025','3027777777');
+
+INSERT INTO Moto (marca, modelo, cilindraje, anio, precio, id_proveedor) VALUES
+('Yamaha','FZ25',250,2022,12000000,1),
+('Honda','CB190R',190,2023,10000000,2),
+('Suzuki','Gixxer',155,2021,8500000,3),
+('AKT','NKD125',125,2020,4500000,4),
+('Bajaj','Pulsar NS200',200,2023,11000000,5),
+('KTM','Duke 200',200,2022,15000000,6),
+('BMW','G310R',310,2023,25000000,7),
+('Ducati','Monster',937,2022,60000000,8),
+('TVS','Apache 200',200,2021,9500000,9),
+('Hero','Hunk 160',160,2020,7000000,10),
+('Royal Enfield','Classic 350',350,2023,18000000,11),
+('Kawasaki','Ninja 400',400,2022,30000000,12),
+('Benelli','302S',300,2021,20000000,13),
+('UM','Renegade',200,2020,9000000,14),
+('Victory','Vegas',1731,2019,55000000,15),
+('Aprilia','RS 660',660,2023,50000000,16),
+('Harley','Iron 883',883,2022,45000000,17),
+('Vespa','Primavera',150,2021,14000000,18),
+('CFMoto','300NK',300,2023,17000000,19),
+('Zontes','310R',310,2022,16000000,20),
+('Lifan','KP200',200,2021,8000000,21),
+('Keeway','RKS150',150,2020,6000000,22),
+('Sym','NHX190',190,2022,9000000,23),
+('Daelim','Roadwin',250,2019,7000000,24),
+('GasGas','MC250',250,2023,22000000,25);
+
+INSERT INTO Pedido (fecha_pedido, estado, id_proveedor) VALUES
+('2024-01-01','Entregado',1),
+('2024-01-02','Pendiente',2),
+('2024-01-03','Cancelado',3),
+('2024-01-04','Entregado',4),
+('2024-01-05','Pendiente',5),
+('2024-01-06','Entregado',6),
+('2024-01-07','Pendiente',7),
+('2024-01-08','Entregado',8),
+('2024-01-09','Cancelado',9),
+('2024-01-10','Entregado',10),
+('2024-01-11','Pendiente',11),
+('2024-01-12','Entregado',12),
+('2024-01-13','Pendiente',13),
+('2024-01-14','Entregado',14),
+('2024-01-15','Cancelado',15),
+('2024-01-16','Entregado',16),
+('2024-01-17','Pendiente',17),
+('2024-01-18','Entregado',18),
+('2024-01-19','Pendiente',19),
+('2024-01-20','Entregado',20),
+('2024-01-21','Cancelado',21),
+('2024-01-22','Entregado',22),
+('2024-01-23','Pendiente',23),
+('2024-01-24','Entregado',24),
+('2024-01-25','Pendiente',25);
+
+INSERT INTO Venta (fecha, precio_venta, id_cliente, id_moto) VALUES
+('2024-02-01',12500000,1,1),
+('2024-02-02',10500000,2,2),
+('2024-02-03',9000000,3,3),
+('2024-02-04',5000000,4,4),
+('2024-02-05',11500000,5,5),
+('2024-02-06',15500000,6,6),
+('2024-02-07',26000000,7,7),
+('2024-02-08',62000000,8,8),
+('2024-02-09',9800000,9,9),
+('2024-02-10',7500000,10,10),
+('2024-02-11',18500000,11,11),
+('2024-02-12',31000000,12,12),
+('2024-02-13',21000000,13,13),
+('2024-02-14',9500000,14,14),
+('2024-02-15',56000000,15,15),
+('2024-02-16',51000000,16,16),
+('2024-02-17',46000000,17,17),
+('2024-02-18',14500000,18,18),
+('2024-02-19',17500000,19,19),
+('2024-02-20',16500000,20,20),
+('2024-02-21',8500000,21,21),
+('2024-02-22',6500000,22,22),
+('2024-02-23',9200000,23,23),
+('2024-02-24',7200000,24,24),
+('2024-02-25',23000000,25,25);
